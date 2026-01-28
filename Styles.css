@@ -24,11 +24,6 @@ body{
     font-size: 52px;
 }
 
-.subtitulo{
-    color: black;
-    font-size: 42px;
-}
-
 .tarjetas{
     display: flex;
     gap: 10px;
@@ -59,8 +54,48 @@ body{
     border: 3px solid black;
     border-radius: 20px;
     width: 120px;
+    font-family: "Fredoka", sans-serif;
+    margin-top: 30px;
 }
 
 input{
     display: none;
+}
+
+.subtitulo{
+    color: darkorange;
+    font-size: 42px;
+}
+
+.botones-ataque{
+    padding: 10px;
+    box-sizing: border-box;
+    width: 180px;
+    font-family: 'Poppins', sans-serif;
+}
+
+#boton-fuego{
+    font-size: 30px;
+    background-color: red;
+    border-radius: 30px;
+    border: 2px solid;
+}
+
+#boton-agua{
+    font-size: 30px;
+    background-color: aqua;
+    border-radius: 30px;
+    border: 2px solid;
+}
+
+#boton-hierba{
+    font-size: 30px;
+    background-color: chartreuse;
+    border-radius: 30px;
+    border: 2px solid;
+}
+
+#seleccionar-ataque{
+    flex-direction: column;
+    align-items: center;
 }
