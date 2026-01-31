@@ -116,3 +116,9 @@ input{
     color: blue;
     font-family: 'Poppins', sans-serif;
 }
+
+.combate{
+    display: grid;
+    grid-template-columns: 100px 100px;
+    justify-content: center;
+}
