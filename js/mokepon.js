@@ -1,4 +1,24 @@
-//Usar disabled para que las mascotan solo puedan atacar con un elemento, probar si funcion
+const sectionSeleccionarAtaque = document.getElementById('seleccionar-ataque')
+const sectionReiniciar = document.getElementById('reiniciar')
+const botonMascotaJugardor = document.getElementById('boton-mascota')
+const botonFuego = document.getElementById("boton-fuego")
+const botonAgua = document.getElementById("boton-agua")
+const botonHierba = document.getElementById("boton-hierba")
+const botonReiniciar = document.getElementById("boton-reiniciar")
+
+const sectionSeleccionarMascota = document.getElementById('seleccionar-mascota')
+const imputRatigueya = document.getElementById("ratigueya")
+const imputHipodoge = document.getElementById('hipodoge')
+const imputCapipepo = document.getElementById('capipepo')
+const spanMascota = document.getElementById('mascota-jugador')
+
+const spanMascotaEnemiga = document.getElementById('mascota-pc')
+const spanVidasJugador = document.getElementById("player-hp")
+const spanVidasPc = document.getElementById("pc-hp")
+
+const sectionMensajes = document.getElementById('resultado-combate')
+const ataqueDelJugador = document.getElementById('ataque-del-juagador')
+const ataqueDelEnemigo = document.getElementById('ataque-del-enemigo')
 
 let ataqueJugador
 let ataqueEnemigo
@@ -7,41 +27,18 @@ let vidasEnemigo = 3
 let resultado
 
 function iniciarJuego(){
-    let sectionSeleccionarAtaque = document.getElementById('seleccionar-ataque')
     sectionSeleccionarAtaque.style.display = 'none'
-
-    let sectionReiniciar = document.getElementById('reiniciar')
     sectionReiniciar.style.display = 'none'
-
-    let botonMascotaJugardor = document.getElementById('boton-mascota')
     botonMascotaJugardor.addEventListener('click', seleccionarMascotaJugador)
-
-    let botonFuego = document.getElementById("boton-fuego")
     botonFuego.addEventListener('click', ataqueFuego)
-
-    let botonAgua = document.getElementById("boton-agua")
     botonAgua.addEventListener('click', ataqueAgua)
-
-    let botonHierba = document.getElementById("boton-hierba")
     botonHierba.addEventListener('click', ataqueHierba)
-
-    let botonReiniciar = document.getElementById("boton-reiniciar")
     botonReiniciar.addEventListener('click', reiniciarJuego)
-
 }
 
 function seleccionarMascotaJugador(){
-    let sectionSeleccionarAtaque = document.getElementById('seleccionar-ataque')
     sectionSeleccionarAtaque.style.display = 'flex'
-
-    let sectionSeleccionarMascota = document.getElementById('seleccionar-mascota')
     sectionSeleccionarMascota.style.display = 'none'
-
-    let imputRatigueya = document.getElementById("ratigueya")
-    let imputHipodoge = document.getElementById('hipodoge')
-    let imputCapipepo = document.getElementById('capipepo')
-    let spanMascota = document.getElementById('mascota-jugador')
-
     if(imputRatigueya.checked){
         spanMascota.innerHTML = "Ratigueya"
     }else if(imputHipodoge.checked){
@@ -57,8 +54,7 @@ function seleccionarMascotaJugador(){
 
 function seleccionarMascotaEnemigo(){
     let mascotaEnemiga = aleatorio(1, 3)
-    let spanMascotaEnemiga = document.getElementById('mascota-pc')
-    
+
     if(mascotaEnemiga == 1){
         spanMascotaEnemiga.innerHTML = "Ratigueya"
     }else if (mascotaEnemiga == 2) {
@@ -99,9 +95,6 @@ function ataqueAleatorioEnemigo(){
 }
 
 function kombat() {
-    let spanVidasJugador = document.getElementById("player-hp")
-    let spanVidasPc = document.getElementById("pc-hp")
-
     if (ataqueJugador == ataqueEnemigo) {
       resultado = "EMPATE"
       crearMensaje()
@@ -141,42 +134,23 @@ function revisarVidas(){
 }
 
 function crearMensaje(){
-    let sectionMensajes = document.getElementById('resultado-combate')
-    let ataqueDelJugador = document.getElementById('ataque-del-juagador')
-    let ataqueDelEnemigo = document.getElementById('ataque-del-enemigo')
-
     let nuevoAtaqueJugador = document.createElement('p')
     let nuevoAtaqueEnemigo = document.createElement('p')
 
     sectionMensajes.innerHTML = resultado
     nuevoAtaqueJugador.innerHTML = ataqueJugador
     nuevoAtaqueEnemigo.innerHTML = ataqueEnemigo
-   
     
     ataqueDelJugador.appendChild(nuevoAtaqueJugador)
     ataqueDelEnemigo.appendChild(nuevoAtaqueEnemigo)
-
-
 }
 
 function mensajeFinal(resultadoFinal){
-    let sectionMensajes = document.getElementById('resultado-combate')
-   
     sectionMensajes.innerHTML = resultadoFinal
-    
-    let botonFuego = document.getElementById("boton-fuego")
     botonFuego.disabled = true
-
-    let botonAgua = document.getElementById("boton-agua")
     botonAgua.disabled = true
-
-    let botonHierba = document.getElementById("boton-hierba")
     botonHierba.disabled = true
-
-    //OJO hay que crear la variable de nuevo ya que son locales, es decir no existen fuera de la funcion previa
-    let sectionReiniciar = document.getElementById('reiniciar')
     sectionReiniciar.style.display = 'block'
-
 }
 
 function reiniciarJuego(){
@@ -190,26 +164,3 @@ function aleatorio(min, max){
 window.addEventListener('load', iniciarJuego) 
 //otra manera de llamar al script después de que se cargue todo el HTML
 //la función iniciarJuego se carga cuando ya todo el contenido está cargado.
-
-// function combate() {
-//     if(ataqueEnemigo == ataqueJugador) {
-//         crearMensaje("EMPATE")
-//     } else if(ataqueJugador == 'FUEGO' && ataqueEnemigo == 'TIERRA') {
-//         crearMensaje("GANASTE")
-//     } else if(ataqueJugador == 'AGUA' && ataqueEnemigo == 'FUEGO') {
-//         crearMensaje("GANASTE")
-//     } else if(ataqueJugador == 'TIERRA' && ataqueEnemigo == 'AGUA') {
-//         crearMensaje("GANASTE")
-//     } else {
-//         crearMensaje("PERDISTE")
-//     }
-// }
-
-// function crearMensaje(resultado) {
-//     let sectionMensajes = document.getElementById('mensajes')
-    
-//     let parrafo = document.createElement('p')
-//     parrafo.innerHTML = 'Tu mascota atacó con ' + ataqueJugador + ', las mascota del enemigo atacó con ' + ataqueEnemigo + '- ' + resultado
-
-//     sectionMensajes.appendChild(parrafo)
-// } Forma alternativa que se mostro en el curso, en vez de crear otra variable le añadio un parametro a la funcion de crearMensaje
