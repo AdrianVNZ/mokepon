@@ -17,7 +17,7 @@ const contenedorTarjetas = document.getElementById('contenedorTarjetas')
 const contenedorAtaques = document.getElementById("contenedorAtaques")
 
 let mokepones = []
-let ataqueJugador
+let ataqueJugador = []
 let ataqueEnemigo
 let opcionDeMokepones
 let ataquesMokepon
@@ -28,6 +28,7 @@ let mascotaJugador
 let botonFuego
 let botonAgua 
 let botonHierba
+let botones = []
 let vidasJugador = 3
 let vidasEnemigo = 3
 let resultado
@@ -127,37 +128,41 @@ function extraerAtaques(mascotaJugador){
 function mostrarAyaques(ataques){
     ataques.forEach(ataque => {
         ataquesMokepon = `
-        <button id=${ataque.id} class="botones-ataque">${ataque.nombre}</button>
+        <button id=${ataque.id} class="botones-ataque BAtaque">${ataque.nombre}</button>
         `
         contenedorAtaques.innerHTML += ataquesMokepon
     });
+    
     botonFuego = document.getElementById("boton-fuego")
     botonAgua = document.getElementById("boton-agua")
     botonHierba = document.getElementById("boton-hierba")
+    botones = document.querySelectorAll(".BAtaque")
+}
 
-    botonFuego.addEventListener('click', ataqueFuego)
-    botonAgua.addEventListener('click', ataqueAgua)
-    botonHierba.addEventListener('click', ataqueHierba)
+function secuenciaAtaque(){
+    botones.forEach((boton) => {
+        boton.addEventListener('click', (e) =>{
+            if (e.target.textContent === '🔥') {
+                ataqueJugador.push('FUEGO')
+                console.log(ataqueJugador)
+                boton.style.background = '#112f58'   
+            } else if (e.target.textContent === '💧') {
+                ataqueJugador.push('AGUA')
+                console.log(ataqueJugador)
+                boton.style.background = '#112f58'
+            } else {
+                ataqueJugador.push('TIERRA')
+                console.log(ataqueJugador)
+                boton.style.background = '#112f58'
+            }
+        })
+    });
 }
 
 function seleccionarMascotaEnemigo(){
     let mascotaEnemiga = aleatorio(0, mokepones.length - 1)
     spanMascotaEnemiga.innerHTML = mokepones[mascotaEnemiga].nombre
-}
-
-function ataqueFuego(){
-    ataqueJugador = "Lanzallamas!"
-    ataqueAleatorioEnemigo()
-}
-
-function ataqueAgua(){
-    ataqueJugador = "Balas de agua!"
-    ataqueAleatorioEnemigo()
-}
-
-function ataqueHierba(){
-    ataqueJugador = "Hojas cortantes!"
-    ataqueAleatorioEnemigo()
+    secuenciaAtaque()
 }
 
 function ataqueAleatorioEnemigo(){
