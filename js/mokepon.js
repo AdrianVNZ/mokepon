@@ -126,10 +126,10 @@ function extraerAtaques(mascotaJugador){
             ataques = mokepones[i].ataques
         }
     }
-    mostrarAyaques(ataques)
+    mostrarAtaques(ataques)
 }
 
-function mostrarAyaques(ataques){
+function mostrarAtaques(ataques){
     ataques.forEach(ataque => {
         ataquesMokepon = `
         <button id=${ataque.id} class="botones-ataque BAtaque">${ataque.nombre}</button>
@@ -149,15 +149,18 @@ function secuenciaAtaque(){
             if (e.target.textContent === '🔥') {
                 ataqueJugador.push('Lanzallamas')
                 console.log(ataqueJugador)
-                boton.style.background = '#112f58'   
+                boton.style.background = '#112f58'
+                boton.disabled = true   
             } else if (e.target.textContent === '💧') {
                 ataqueJugador.push('Balas de agua!')
                 console.log(ataqueJugador)
                 boton.style.background = '#112f58'
+                boton.disabled = true 
             } else {
                 ataqueJugador.push('Hojas cortantes!')
                 console.log(ataqueJugador)
                 boton.style.background = '#112f58'
+                boton.disabled = true 
             }
             ataqueAleatorioEnemigo()
         })
@@ -204,8 +207,7 @@ function kombat() {
         if (ataqueJugador[index] == ataqueEnemigo[index]) {
             indexAmbosOponentes(index, index)
             crearMensaje("EMPATE")
-            victoriasJugador++
-            spanVidasJugador.innerHTML = victoriasJugador
+            
         
         }else if ((ataqueJugador[index] == "Lanzallamas!" && ataqueEnemigo[index] == "Hojas cortantes!")||(ataqueJugador[index] == "Balas de agua!" && ataqueEnemigo[index] == "Lanzallamas!")||(ataqueJugador[index] == "Hojas cortantes!" && ataqueEnemigo[index] == "Balas de agua!")) {
             indexAmbosOponentes(index, index)
@@ -249,9 +251,6 @@ function crearMensaje(resultado){
 
 function mensajeFinal(resultadoFinal){
     sectionMensajes.innerHTML = resultadoFinal
-    botonFuego.disabled = true
-    botonAgua.disabled = true
-    botonHierba.disabled = true
     sectionReiniciar.style.display = 'block'
 }
 
